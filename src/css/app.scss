@@ -1,0 +1,27 @@
+// app global css in SCSS form
+// Override defaults
+body {
+  background: white;
+}
+
+// Helpers
+.cursor-move {
+  cursor: move;
+}
+
+.c-bg-grey-1 {
+  background: $blue-grey-1;
+}
+
+.c-column {
+  min-height: 80vh;
+  max-width: 95vw;
+  width: 400px;
+}
+
+// Dynamic classes
+.moving-card {
+  opacity: 0.5;
+  background: $blue-grey-1;
+  border: 1px solid $blue-5;
+}
