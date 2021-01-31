@@ -9,6 +9,7 @@
       ghost-class="moving-card" 
       filter=".action-button" 
       class="q-pa-md q-mx-md q-gutter-md c-bg-grey-1 rounded-borders c-column"
+      @change="changed($event, column)"
     >
       <Card v-for="card in cards" :key="card.id" :card="card" />
 
@@ -17,6 +18,7 @@
 </template>
 
 <script>
+import api from '../api'
 import Draggable from 'vuedraggable'
 import Card from '../components/Card.vue'
 
@@ -26,15 +28,38 @@ export default {
     column: {
       type: Object,
       required: true
-    },
-    cards: {
-      type: Array,
-      required: true
     }
   },
   components: {
     Draggable,
     Card
+  },
+  computed: {
+    cards: {
+      get() {
+        return this.$store.state.columns.find(column => column.id === this.column.id).cards
+      },
+      set(cards) {
+        let column_id = this.column.id
+        this.$store.commit("updateColumns", { column_id, cards })
+      }
+    }
+  },
+  methods: {
+    changed(e, column) {
+      if(e && e.added) {
+        const updatedCard = {
+          id: e.added.element.id,
+          column_id: column.id
+        }
+        api.updateCard(updatedCard)
+          .then(response => {
+            const card = response.data
+            this.$store.commit("updatePosition", card)
+          })
+          .catch(error => console.log(error))
+      }
+    }
   }
 }
 </script>
