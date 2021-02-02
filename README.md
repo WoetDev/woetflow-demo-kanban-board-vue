@@ -1,6 +1,12 @@
-# KanbanBoard (woetflow-demo-kanban-board-vue)
+# README
 
 This is the Vue frontend for the demo app of a full-stack kanban board from [woetflow.com](https://woetflow.com/)
+
+## Demo
+[Demo full-stack Kanban Board](https://woetflow-demo-kanban-board.netlify.app/#/)
+
+## Blog
+This project is used in the blog post ["Creating a full-stack kanban board: the Vue SPA frontend"](https://woetflow.com/posts/creating-a-full-stack-kanban-board-the-vue-spa-frontend)
 
 ## Install the dependencies
 ```bash
